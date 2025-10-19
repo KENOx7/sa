@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kadr Potensialı Haqqında Məlumat (Redaktə Edilə Bilən)</title>
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            background-color: #f4f4f4;
+            line-height: 1.3;
+        }
+        .container {
+            width: 1100px; /* Landşaft A4-ə uyğun təxmini en */
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border: 1px solid #ccc;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .top-right {
+            text-align: right;
+            font-size: 14px;
+        }
+        h2 {
+            text-align: center;
+            text-decoration: underline;
+            font-weight: bold;
+            font-size: 18px;
+            margin-top: 20px;
+            margin-bottom: 5px;
+        }
+        h3 {
+            text-align: center;
+            font-weight: bold;
+            font-size: 16px;
+            margin: 5px 0;
+        }
+        .subtitle {
+            text-align: center;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+        .spec-code {
+            text-align: left;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 10px; 
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 5px;
+            text-align: left;
+            vertical-align: top;
+            word-wrap: break-word;
+        }
+        thead th {
+            text-align: center;
+            vertical-align: middle;
+            font-weight: bold;
+            background-color: #f9f9f9;
+        }
+        
+        /* Redaktə edilə bilən xanalar üçün stil */
+        [contenteditable="true"] {
+            cursor: cell;
+            background-color: #fdfdfd;
+        }
+        [contenteditable="true"]:focus {
+            background-color: #fffbe6;
+            outline: 2px solid #007bff;
+        }
+        
+        /* İdarəetmə Düymələri üçün Stillər */
+        .export-controls {
+            width: 1100px;
+            margin: 20px auto;
+            text-align: center;
+            padding: 10px;
+            background: #eee;
+            border: 1px solid #ccc;
+        }
+        .export-controls button {
+            font-size: 16px;
+            padding: 10px 20px;
+            margin: 0 10px;
+            cursor: pointer;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        #printBtn { background-color: #007bff; }
+        #printBtn:hover { background-color: #0056b3; }
+        
+        #addRowBtn { background-color: #28a745; } /* Yaşıl rəng */
+        #addRowBtn:hover { background-color: #218838; }
+
+        .deleteBtn { /* Qırmızı 'Sil' düyməsi */
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            padding: 3px 6px;
+            font-size: 10px;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+        .deleteBtn:hover { background-color: #c82333; }
+        
+        .excel-note {
+            font-size: 14px;
+            margin-top: 10px;
+            color: #555;
+        }
+        .edit-note {
+            background-color: #fffbe6;
+            border: 1px solid #ffe58f;
+            padding: 15px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 16px;
+            font-weight: bold;
+            color: #5d5d5d;
+            border-radius: 5px;
+        }
+
+        /* ÇAP ÜÇÜN XÜSUSİ STİLLƏR */
+        @media print {
+            body {
+                background-color: #ffffff;
+                margin: 0;
+                padding: 0;
+            }
+            .export-controls, .edit-note, .deleteBtn, thead th:last-child, tbody td:last-child {
+                display: none; /* Düymələr, bildiriş və 'Sil' sütunu çapda görünməsin */
+            }
+            .container {
+                width: 100%;
+                margin: 0;
+                padding: 0;
+                border: none;
+                box-shadow: none;
+            }
+            table, th, td {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+            tr {
+                page-break-inside: avoid;
+            }
+        }
+        
+        @page {
+            size: A4 landscape;
+            margin: 1.5cm;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="export-controls">
+        <button onclick="window.print()" id="printBtn">Print / PDF (Landşaft) yüklə</button>
+        <button onclick="addRow()" id="addRowBtn">Yeni Sətir Əlavə Et</button>
+        <p class="excel-note">
+        </p>
+    </div>
+
+    <div class="container" id="printableArea">
+        <p class="top-right">
+            "Yeni təhsil proqramlarının (kurikulumların) tətbiqi Cəhətləri Qaydaları"na Əlavə 6
+        </p>
+
+        <h2>ELMİ-PEDAQOJİ / MÜHƏNDİS PEDAQOJİ KADR POTENSİALI HAQQINDA</h2>
+        <h3>MƏLUMAT</h3>
+        <p class="subtitle">(16.10.2025 tarixinə olan)</p>
+
+        <p class="spec-code">
+            050115 – "Riyaziyyat və informatika müəllimliyi" ixtisası üzrə bakalavriat (magistratura) <br>
+            təhsil proqramının (ixtisasın) ştat cədvəli
+        </p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th rowspan="2">adı</th>
+                    <th rowspan="2">soyadı</th>
+                    <th rowspan="2">atasının adı</th>
+                    <th rowspan="2">təvəllüdü</th>
+                    <th colspan="3">təhsil</th>
+                    <th rowspan="2">elmi dərəcəsi</th>
+                    <th rowspan="2">tədqiqat sahəsi*</th>
+                    <th rowspan="2">elmi adı</th>
+                    <th rowspan="2">cari iş yeri (əsas, əlavə, əvəzçilik)</th>
+                    <th rowspan="2">tədris ilinin** əvvəlinə nəzərdə tutulan əsas iş yeri</th>
+                    <th rowspan="2">əmək stajı, il</th>
+                    <th rowspan="2">pedaqoji stajı, il</th>
+                    <th rowspan="2">ştat cədvəli üzrə vəzifəsi</th>
+                    <th rowspan="2">tədris ilinin** əvvəlinə ştat cədvəli üzrə vəzifəsi</th>
+                    <th rowspan="2">Sil</th> </tr>
+                <tr>
+                    <th>təhsil müəssisəsinin adı</th>
+                    <th>təhsilini bitirdiyi il</th>
+                    <th>təhsil səviyyəsi</th>
+                </tr>
+            </thead>
+            <tbody id="tableData"> <tr>
+                    <td contenteditable="true">Məhburə</td>
+                    <td contenteditable="true">Vəliyeva</td>
+                    <td contenteditable="true">Bakılı</td>
+                    <td contenteditable="true">16.01.1947</td>
+                    <td contenteditable="true">Bakı Dövlət Universiteti, Mexanika-riyaziyyat fakültəsi</td>
+                    <td contenteditable="true">1969</td>
+                    <td contenteditable="true">Bakalavriat (5 illik)</td>
+                    <td contenteditable="true">f.-r.e.n. dosent</td>
+                    <td contenteditable="true">Diferensial tənliklər, optimal idarəetmə</td>
+                    <td contenteditable="true">s.e.n. dosent, Müəllim</td>
+                    <td contenteditable="true">Odlar Yurdu Universiteti, "Riyaziyyat və regional texnologiyalar" kafedrası</td>
+                    <td contenteditable="true">Odlar Yurdu Universiteti, "Riyaziyyat və regional texnologiyalar" kafedrası</td>
+                    <td contenteditable="true">66</td>
+                    <td contenteditable="true">66</td>
+                    <td contenteditable="true">Rektorun müşaviri</td>
+                    <td contenteditable="true">Rektorun müşaviri</td>
+                    <td><button class="deleteBtn" onclick="deleteRow(this)">Sil</button></td>
+                </tr>
+                <tr>
+                    <td contenteditable="true">Bilal</td>
+                    <td contenteditable="true">Bilalov</td>
+                    <td contenteditable="true">Telman</td>
+                    <td contenteditable="true">02.01.1965</td>
+                    <td contenteditable="true">
+                        (2011) Moskva Dövlət Univ... Mexanika-Riy.<br>
+                        (2009) Müdafiə edib...
+                    </td>
+                    <td contenteditable="true"></td>
+                    <td contenteditable="true">Professor, AM. Fizika-riyaziyyat elmləri doktoru üzrə</td>
+                    <td contenteditable="true">f.-r.e.d.</td>
+                    <td contenteditable="true">Diferensial tənliklər, operatorlar</td>
+                    <td contenteditable="true">professor</td>
+                    <td contenteditable="true">Odlar Yurdu Universiteti, "Riyaziyyat və regional..."</td>
+                    <td contenteditable="true">Odlar Yurdu Universiteti, "Riyaziyyat və regional..."</td>
+                    <td contenteditable="true">30</td>
+                    <td contenteditable="true">30</td>
+                    <td contenteditable="true">Kafedra müdiri</td>
+                    <td contenteditable="true">Kafedra müdiri</td>
+                    <td><button class="deleteBtn" onclick="deleteRow(this)">Sil</button></td>
+                </tr>
+                
+                <tr>
+                    <td contenteditable="true">Ramiz</td>
+                    <td contenteditable="true">Ələkbərov</td>
+                    <td contenteditable="true">Bəkir</td>
+                    <td contenteditable="true">30.11.1962</td>
+                    <td contenteditable="true">Moskva Dövlət Universiteti / Bakalavriat Azərbaycan Neft və Sənaye İnstitutu / Müdafiə edib Azərbaycan Neft və Sənaye İnstitutu</td>
+                    <td contenteditable="true">1991</td>
+                    <td contenteditable="true">Bakalavriat (5 illik)</td>
+                    <td contenteditable="true">t.e.n. dosent</td>
+                    <td contenteditable="true">spektral nəzəriyyə, harmonik analiz, approksimasiya nəzəriyyəsi, qeyri-səlis nəzəriyyə, EHM nəzəriyyəsi</td>
+                    <td contenteditable="true">t.e.n. dosent, Müəllim</td>
+                    <td contenteditable="true">Odlar Yurdu Universiteti, "Riyaziyyat və regional texnologiyalar" kafedrası</td>
+                    <td contenteditable="true">Odlar Yurdu Universiteti, "Riyaziyyat və regional texnologiyalar" kafedrası</td>
+                    <td contenteditable="true">35</td>
+                    <td contenteditable="true">35</td>
+                    <td contenteditable="true">professor</td>
+                    <td contenteditable="true">professor</td>
+                    <td><button class="deleteBtn" onclick="deleteRow(this)">Sil</button></td>
+                </tr>
+                <tr>
+                    <td contenteditable="true">Eldar</td>
+                    <td contenteditable="true">Hüseynov</td>
+                    <td contenteditable="true">Hüseyn</td>
+                    <td contenteditable="true">26.01.1954</td>
+                    <td contenteditable="true">Bakalavriat S.M.Kirov adına Qırmızı Əmək bayraqlı ordenli Azərbaycan Dövlət Universiteti</td>
+                    <td contenteditable="true">1976</td>
+                    <td contenteditable="true">Bakalavriat (5 illik)</td>
+                    <td contenteditable="true">t.e.n.</td>
+                    <td contenteditable="true"></td>
+                    <td contenteditable="true">Müəllim</td>
+                    <td contenteditable="true">Odlar Yurdu Universiteti, "Riyaziyyat və regional texnologiyalar" kafedrası</td>
+                    <td contenteditable="true">Odlar Yurdu Universiteti, "Riyaziyyat və regional texnologiyalar" kafedrası</td>
+                    <td contenteditable="true">49</td>
+                    <td contenteditable="true">49</td>
+                    <td contenteditable="true">Müəllim</td>
+                    <td contenteditable="true">Müəllim</td>
+                    <td><button class="deleteBtn" onclick="deleteRow(this)">Sil</button></td>
+                </tr>
+                <tr>
+                    <td contenteditable="true">Məzahir</td>
+                    <td contenteditable="true">Quliyev</td>
+                    <td contenteditable="true">Məmmədağa</td>
+                    <td contenteditable="true">24.03.1973</td>
+                    <td contenteditable="true">Bakalavriat Azərbaycan Texniki Universiteti</td>
+                    <td contenteditable="true">1998</td>
+                    <td contenteditable="true">Bakalavriat (5 illik)</td>
+                    <td contenteditable="true">t.e.n.</td>
+                    <td contenteditable="true"></td>
+                    <td contenteditable="true">Müəllim</td>
+                    <td contenteditable="true">Odlar Yurdu Universiteti, "Riyaziyyat və regional texnologiyalar" kafedrası</td>
+                    <td contenteditable="true">Odlar Yurdu Universiteti, "Riyaziyyat və regional texnologiyalar" kafedrası</td>
+                    <td contenteditable="true">31</td>
+                    <td contenteditable="true">31</td>
+                    <td contenteditable="true">Müəllim</td>
+                    <td contenteditable="true">Kafedra müdiri müavini</td>
+                    <td><button class="deleteBtn" onclick="deleteRow(this)">Sil</button></td>
+                </tr>
+                <tr>
+                    <td contenteditable="true">Ramazan</td>
+                    <td contenteditable="true">Eyyubov</td>
+                    <td contenteditable="true">Əzizxan</td>
+                    <td contenteditable="true">24.05.1954</td>
+                    <td contenteditable="true">Bakalavriat Azərbaycan Dövlət Universiteti</td>
+                    <td contenteditable="true">1976</td>
+                    <td contenteditable="true">Bakalavriat (5 illik)</td>
+                    <td contenteditable="true">f.-r.e.n.</td>
+                    <td contenteditable="true"></td>
+                    <td contenteditable="true">Müəllim</td>
+                    <td contenteditable="true">Odlar Yurdu Universiteti, "Riyaziyyat və regional texnologiyalar" kafedrası</td>
+                    <td contenteditable="true">Odlar Yurdu Universiteti, "Riyaziyyat və regional texnologiyalar" kafedrası</td>
+                    <td contenteditable="true">50</td>
+                    <td contenteditable="true">52</td>
+                    <td contenteditable="true">Müəllim</td>
+                    <td contenteditable="true">Müəllim</td>
+                    <td><button class="deleteBtn" onclick="deleteRow(this)">Sil</button></td>
+                </tr>
+                <tr>
+                    <td contenteditable="true">Fərahim</td>
+                    <td contenteditable="true">Səmədzadə</td>
+                    <td contenteditable="true">Nəhmət</td>
+                    <td contenteditable="true">10.06.1959</td>
+                    <td contenteditable="true">Bakalavriat Azərbaycan Dövlət Universiteti</td>
+                    <td contenteditable="true">1982</td>
+                    <td contenteditable="true">Bakalavriat (5 illik)</td>
+                    <td contenteditable="true">ped.e.n.</td>
+                    <td contenteditable="true"></td>
+                    <td contenteditable="true">Müəllim</td>
+                    <td contenteditable="true">Odlar Yurdu Universiteti, "Riyaziyyat və regional texnologiyalar" kafedrası</td>
+                    <td contenteditable="true">Odlar Yurdu Universiteti, "Riyaziyyat və regional texnologiyalar" kafedrası</td>
+                    <td contenteditable="true">45</td>
+                    <td contenteditable="true">43</td>
+                    <td contenteditable="true">Müəllim</td>
+                    <td contenteditable="true">Müəllim</td>
+                    <td><button class="deleteBtn" onclick="deleteRow(this)">Sil</button></td>
+                </tr>
+
+                <tr>
+                    <td contenteditable="true">Xəyalə</td>
+                    <td contenteditable="true">Əliyeva</td>
+                    <td contenteditable="true">Hüseyn</td>
+                    <td contenteditable="true">17.10.1958</td>
+                    <td contenteditable="true">Bakı Dövlət Universiteti</td>
+                    <td contenteditable="true">1980</td>
+                    <td contenteditable="true">Bakalavriat (5 illik)</td>
+                    <td contenteditable="true">f.r.e.n.</td>
+                    <td contenteditable="true"></td>
+                    <td contenteditable="true">Müəllim</td>
+                    <td contenteditable="true">Odlar Yurdu Universiteti, "Riyaziyyat və regional texnologiyalar" kafedrası</td>
+                    <td contenteditable="true">Odlar Yurdu Universiteti, "Riyaziyyat və regional texnologiyalar" kafedrası</td>
+                    <td contenteditable="true">40</td>
+                    <td contenteditable="true">40</td>
+                    <td contenteditable="true">Müəllim</td>
+                    <td contenteditable="true">Müəllim</td>
+                    <td><button class="deleteBtn" onclick="deleteRow(this)">Sil</button></td>
+                </tr>
+                <tr>
+                    <td contenteditable="true">Raidə</td>
+                    <td contenteditable="true">İbayeva</td>
+                    <td contenteditable="true">Zabit</td>
+                    <td contenteditable="true">12.06.1983</td>
+                    <td contenteditable="true">Bakı Dövlət Universiteti magistratura</td>
+                    <td contenteditable="true">2022</td>
+                    <td contenteditable="true"></td>
+                    <td contenteditable="true">f.r.e.d. dosent</td>
+                    <td contenteditable="true"></td>
+                    <td contenteditable="true">f.r.e.d. dosent Müəllim</td>
+                    <td contenteditable="true">Odlar Yurdu Universiteti, "Riyaziyyat və regional texnologiyalar" kafedrası</td>
+                    <td contenteditable="true">Odlar Yurdu Universiteti, "Riyaziyyat və regional texnologiyalar" kafedrası</td>
+                    <td contenteditable="true">15</td>
+                    <td contenteditable="true">7</td>
+                    <td contenteditable="true">Müəllim</td>
+                    <td contenteditable="true">Müəllim</td>
+                    <td><button class="deleteBtn" onclick="deleteRow(this)">Sil</button></td>
+                </tr>
+                <tr>
+                    <td contenteditable="true">Elçin</td>
+                    <td contenteditable="true">Həsənov</td>
+                    <td contenteditable="true">Qəfər</td>
+                    <td contenteditable="true">29.08.1965</td>
+                    <td contenteditable="true">Bakalavriat Bakı Dövlət Universiteti AMEA Fizika İnstitutu</td>
+                    <td contenteditable="true">1989</td>
+                    <td contenteditable="true">Bakalavriat (5 illik)</td>
+                    <td contenteditable="true">t.e.n.</td>
+                    <td contenteditable="true"></td>
+                    <td contenteditable="true">Müəllim</td>
+                    <td contenteditable="true">Odlar Yurdu Universiteti, "Riyaziyyat və regional texnologiyalar" kafedrası</td>
+                    <td contenteditable="true">Odlar Yurdu Universiteti, "Riyaziyyat və regional texnologiyalar" kafedrası</td>
+                    <td contenteditable="true">35</td>
+                    <td contenteditable="true">20</td>
+                    <td contenteditable="true">Müəllim</td>
+                    <td contenteditable="true">Müəllim</td>
+                    <td><button class="deleteBtn" onclick="deleteRow(this)">Sil</button></td>
+                </tr>
+                <tr>
+                    <td contenteditable="true">Aydın</td>
+                    <td contenteditable="true">Hüseynov</td>
+                    <td contenteditable="true">Fəridin</td>
+                    <td contenteditable="true">05.02.1945</td>
+                    <td contenteditable="true">Bakalavriat Moskva Fizika və Texnologiya İnstitutu Müdafiə edib İqtisad Universiteti</td>
+                    <td contenteditable="true">1974</td>
+                    <td contenteditable="true"></td>
+                    <td contenteditable="true">t.e.n. dosent</td>
+                    <td contenteditable="true"></td>
+                    <td contenteditable="true">t.e.n. dosent</td>
+                    <td contenteditable="true">Odlar Yurdu Universiteti, "Riyaziyyat və regional texnologiyalar" kafedrası</td>
+                    <td contenteditable="true">Odlar Yurdu Universiteti, "Riyaziyyat və regional texnologiyalar" kafedrası</td>
+                    <td contenteditable="true">51</td>
+                    <td contenteditable="true">44</td>
+                    <td contenteditable="true">Professor</td>
+                    <td contenteditable="true">Professor</td>
+                    <td><button class="deleteBtn" onclick="deleteRow(this)">Sil</button></td>
+                </tr>
+                <tr>
+                    <td contenteditable="true">Aygün</td>
+                    <td contenteditable="true">Qarayeva</td>
+                    <td contenteditable="true">Tahir</td>
+                    <td contenteditable="true">23.08.1977</td>
+                    <td contenteditable="true">Bakalavriat Bakı Dövlət Universiteti magistratura Bakı Dövlət Universiteti Müdafiə edib AMEA Riyaziyyat və Mexanika İnstitutu</td>
+                    <td contenteditable="true">2015</td>
+                    <td contenteditable="true"></td>
+                    <td contenteditable="true">f.r.e.n.</td>
+                    <td contenteditable="true"></td>
+                    <td contenteditable="true">f.r.e.n. Müəllim</td>
+                    <td contenteditable="true">Odlar Yurdu Universiteti, "Riyaziyyat və regional texnologiyalar" kafedrası</td>
+                    <td contenteditable="true">Odlar Yurdu Universiteti, "Riyaziyyat və regional texnologiyalar" kafedrası</td>
+                    <td contenteditable="true">30</td>
+                    <td contenteditable="true">30</td>
+                    <td contenteditable="true">Müəllim</td>
+                    <td contenteditable="true">Müəllim</td>
+                    <td><button class="deleteBtn" onclick="deleteRow(this)">Sil</button></td>
+                </tr>
+                <tr>
+                    <td contenteditable="true">İlham</td>
+                    <td contenteditable="true">Cabrayılov</td>
+                    <td contenteditable="true">Qəhrəman</td>
+                    <td contenteditable="true">01.09.1969</td>
+                    <td contenteditable="true">Bakalavriat Azərbaycan Dövlət Universiteti</td>
+                    <td contenteditable="true">1992</td>
+                    <td contenteditable="true">Bakalavriat (5 illik)</td>
+                    <td contenteditable="true"></td>
+                    <td contenteditable="true"></td>
+                    <td contenteditable="true">Müəllim</td>
+                    <td contenteditable="true">Odlar Yurdu Universiteti, "Riyaziyyat və regional texnologiyalar" kafedrası</td>
+                    <td contenteditable="true">Odlar Yurdu Universiteti, "Riyaziyyat və regional texnologiyalar" kafedrası</td>
+                    <td contenteditable="true">40</td>
+                    <td contenteditable="true">33</td>
+                    <td contenteditable="true">Müəllim</td>
+                    <td contenteditable="true">Müəllim</td>
+                    <td><button class="deleteBtn" onclick="deleteRow(this)">Sil</button></td>
+                </tr>
+
+                <tr>
+                    <td contenteditable="true">Sevda</td>
+                    <td contenteditable="true">İbrahimova</td>
+                    <td contenteditable="true">Pəşa</td>
+                    <td contenteditable="true">23.01.1965</td>
+                    <td contenteditable="true">Bakalavriat Bakı Dövlət Universiteti</td>
+                    <td contenteditable="true">1986</td>
+                    <td contenteditable="true">Bakalavriat (5 illik)</td>
+                    <td contenteditable="true"></td>
+                    <td contenteditable="true"></td>
+                    <td contenteditable="true">Müəllim</td>
+                    <td contenteditable="true">Odlar Yurdu Universiteti, "Riyaziyyat və regional texnologiyalar" kafedrası</td>
+                    <td contenteditable="true">Odlar Yurdu Universiteti, "Riyaziyyat və regional texnologiyalar" kafedrası</td>
+                    <td contenteditable="true">42</td>
+                    <td contenteditable="true">37</td>
+                    <td contenteditable="true">Müəllim</td>
+                    <td contenteditable="true">Müəllim</td>
+                    <td><button class="deleteBtn" onclick="deleteRow(this)">Sil</button></td>
+                </tr>
+                <tr>
+                    <td contenteditable="true">Ramin</td>
+                    <td contenteditable="true">Kərimov</td>
+                    <td contenteditable="true">Əliyar</td>
+                    <td contenteditable="true">10.06.1998</td>
+                    <td contenteditable="true">Bakalavriat Azərbaycan Memarlıq və İnşaat Universiteti / magistratura Odlar Yurdu Universiteti</td>
+                    <td contenteditable="true">2021</td>
+                    <td contenteditable="true">magistratura</td>
+                    <td contenteditable="true"></td>
+                    <td contenteditable="true"></td>
+                    <td contenteditable="true">Müəllim</td>
+                    <td contenteditable="true">Odlar Yurdu Universiteti, "Riyaziyyat və regional texnologiyalar" kafedrası</td>
+                    <td contenteditable="true">Odlar Yurdu Universiteti, "Riyaziyyat və regional texnologiyalar" kafedrası</td>
+                    <td contenteditable="true">5</td>
+                    <td contenteditable="true">4</td>
+                    <td contenteditable="true">koordinator</td>
+                    <td contenteditable="true">Müəllim</td>
+                    <td><button class="deleteBtn" onclick="deleteRow(this)">Sil</button></td>
+                </tr>
+                <tr>
+                    <td contenteditable="true">Rəvanə</td>
+                    <td contenteditable="true">Qreyfild</td>
+                    <td contenteditable="true">Mahir</td>
+                    <td contenteditable="true">05.05.1998</td>
+                    <td contenteditable="true">Bakalavriat Azərbaycan Dövlət Pedaqoji Universiteti / magistratura Azərbaycan Dövlət İqtisad Universiteti (MBA)</td>
+                    <td contenteditable="true">2021</td>
+                    <td contenteditable="true">magistratura</td>
+                    <td contenteditable="true"></td>
+                    <td contenteditable="true"></td>
+                    <td contenteditable="true">Müəllim</td>
+                    <td contenteditable="true">Odlar Yurdu Universiteti, "Riyaziyyat və regional texnologiyalar" kafedrası</td>
+                    <td contenteditable="true">Odlar Yurdu Universiteti, "Riyaziyyat və regional texnologiyalar" kafedrası</td>
+                    <td contenteditable="true">4</td>
+                    <td contenteditable="true">4</td>
+                    <td contenteditable="true">Müəllim</td>
+                    <td contenteditable="true">Müəllim</td>
+                    <td><button class="deleteBtn" onclick="deleteRow(this)">Sil</button></td>
+                </tr>
+                <tr>
+                    <td contenteditable="true">Sənan</td>
+                    <td contenteditable="true">Niyazi</td>
+                    <td contenteditable="true">Eyvaz</td>
+                    <td contenteditable="true">25.04.2000</td>
+                    <td contenteditable="true">Bakalavriat Qafqaz Universiteti / magistratura Odlar Yurdu Universiteti</td>
+                    <td contenteditable="true">2023</td>
+                    <td contenteditable="true">magistratura</td>
+                    <td contenteditable="true"></td>
+                    <td contenteditable="true"></td>
+                    <td contenteditable="true">Müəllim</td>
+                    <td contenteditable="true">Odlar Yurdu Universiteti, "Riyaziyyat və regional texnologiyalar" kafedrası</td>
+                    <td contenteditable="true">Odlar Yurdu Universiteti, "Riyaziyyat və regional texnologiyalar" kafedrası</td>
+                    <td contenteditable="true">2</td>
+                    <td contenteditable="true">3</td>
+                    <td contenteditable="true">Müəllim</td>
+                    <td contenteditable="true">Müəllim</td>
+                    <td><button class="deleteBtn" onclick="deleteRow(this)">Sil</button></td>
+                </tr>
+                <tr>
+                    <td contenteditable="true">Leyla</td>
+                    <td contenteditable="true">Əlizadə</td>
+                    <td contenteditable="true">Eldar</td>
+                    <td contenteditable="true">30.05.1997</td>
+                    <td contenteditable="true">Bakalavriat Pedaqoji Universitet / magistratura Bakı Dövlət Universiteti</td>
+                    <td contenteditable="true">2022</td>
+                    <td contenteditable="true">magistratura</td>
+                    <td contenteditable="true"></td>
+                    <td contenteditable="true"></td>
+                    <td contenteditable="true">Müəllim</td>
+                    <td contenteditable="true">Odlar Yurdu Universiteti, "Riyaziyyat və regional texnologiyalar" kafedrası</td>
+                    <td contenteditable="true">Odlar Yurdu Universiteti, "Riyaziyyat və regional texnologiyalar" kafedrası</td>
+                    <td contenteditable="true">3</td>
+                    <td contenteditable="true">3</td>
+                    <td contenteditable="true">Müəllim</td>
+                    <td contenteditable="true">Müəllim</td>
+                    <td><button class="deleteBtn" onclick="deleteRow(this)">Sil</button></td>
+                </tr>
+                <tr>
+                    <td contenteditable="true">Fərid</td>
+                    <td contenteditable="true">Vəlizadə</td>
+                    <td contenteditable="true">Gəray</td>
+                    <td contenteditable="true">01.07.1997</td>
+                    <td contenteditable="true">Bakalavriat Azərbaycan Dövlət Neft və Sənaye Universiteti / magistratura Azərbaycan Dövlət Neft və...</td>
+                    <td contenteditable="true">2020</td>
+                    <td contenteditable="true">magistratura</td>
+                    <td contenteditable="true"></td>
+                    <td contenteditable="true"></td>
+                    <td contenteditable="true">Müəllim</td>
+                    <td contenteditable="true">Odlar Yurdu Universiteti, "Riyaziyyat və regional texnologiyalar" kafedrası</td>
+                    <td contenteditable="true">Odlar Yurdu Universiteti, "Riyaziyyat və regional texnologiyalar" kafedrası</td>
+                    <td contenteditable="true">4</td>
+                    <td contenteditable="true">4</td>
+                    <td contenteditable="true">Müəllim</td>
+                    <td contenteditable="true">Müəllim</td>
+                    <td><button class="deleteBtn" onclick="deleteRow(this)">Sil</button></td>
+                </tr>
+                
+                <tr>
+                    <td contenteditable="true">Gülmar</td>
+                    <td contenteditable="true">Abdulhamidova</td>
+                    <td contenteditable="true">Alqayıt</td>
+                    <td contenteditable="true">16.02.1995</td>
+                    <td contenteditable="true">Bakalavriat Sumqayıt Dövlət Universiteti / magistratura Pedaqoji Universitet</td>
+                    <td contenteditable="true">2020</td>
+                    <td contenteditable="true">magistratura</td>
+                    <td contenteditable="true"></td>
+                    <td contenteditable="true"></td>
+                    <td contenteditable="true">Müəllim</td>
+                    <td contenteditable="true">Odlar Yurdu Universiteti, "Riyaziyyat və regional texnologiyalar" kafedrası</td>
+                    <td contenteditable="true">Odlar Yurdu Universiteti, "Riyaziyyat və regional texnologiyalar" kafedrası</td>
+                    <td contenteditable="true">8</td>
+                    <td contenteditable="true">5</td>
+                    <td contenteditable="true">Müəllim</td>
+                    <td contenteditable="true">Müəllim</td>
+                    <td><button class="deleteBtn" onclick="deleteRow(this)">Sil</button></td>
+                </tr>
+                <tr>
+                    <td contenteditable="true">Mənsim</td>
+                    <td contenteditable="true">Məmmədzadə</td>
+                    <td contenteditable="true">Vəli</td>
+                    <td contenteditable="true">17.02.1955</td>
+                    <td contenteditable="true">Bakalavriat Pedaqoji Universitet</td>
+                    <td contenteditable="true">1982</td>
+                    <td contenteditable="true">Bakalavriat (5 illik)</td>
+                    <td contenteditable="true"></td>
+                    <td contenteditable="true"></td>
+                    <td contenteditable="true">Müəllim</td>
+                    <td contenteditable="true">Odlar Yurdu Universiteti, "Riyaziyyat və regional texnologiyalar" kafedrası</td>
+                    <td contenteditable="true">Odlar Yurdu Universiteti, "Riyaziyyat və regional texnologiyalar" kafedrası</td>
+                    <td contenteditable="true">48</td>
+                    <td contenteditable="true">48</td>
+                    <td contenteditable="true">Müəllim</td>
+                    <td contenteditable="true">Müəllim</td>
+                    <td><button class="deleteBtn" onclick="deleteRow(this)">Sil</button></td>
+                </tr>
+                <tr>
+                    <td contenteditable="true">Nərgiz</td>
+                    <td contenteditable="true">Süleymanova</td>
+                    <td contenteditable="true">Kərəm</td>
+                    <td contenteditable="true">16.01.2000</td>
+                    <td contenteditable="true">Bakalavriat Odlar Yurdu Universiteti / magistratura Odlar Yurdu Universiteti</td>
+                    <td contenteditable="true">2024</td>
+                    <td contenteditable="true">magistratura</td>
+                    <td contenteditable="true"></td>
+                    <td contenteditable="true"></td>
+                    <td contenteditable="true">Müəllim</td>
+                    <td contenteditable="true">Odlar Yurdu Universiteti, "Riyaziyyat və regional texnologiyalar" kafedrası</td>
+                    <td contenteditable="true">Odlar Yurdu Universiteti, "Riyaziyyat və regional texnologiyalar" kafedrası</td>
+                    <td contenteditable="true">2</td>
+                    <td contenteditable="true">2</td>
+                    <td contenteditable="true">Müəllim</td>
+                    <td contenteditable="true">Müəllim</td>
+                    <td><button class="deleteBtn" onclick="deleteRow(this)">Sil</button></td>
+                </tr>
+                <tr>
+                    <td contenteditable="true">Gülnur</td>
+                    <td contenteditable="true">Cəbrayılova</td>
+                    <td contenteditable="true">Hikmət</td>
+                    <td contenteditable="true">01.03.1982</td>
+                    <td contenteditable="true">Bakalavriat Bakı Dövlət Universiteti / magistratura Sankt-Peterburq... / magistratura Akademik...</td>
+                    <td contenteditable="true">2010</td>
+                    <td contenteditable="true">magistratura</td>
+                    <td contenteditable="true"></td>
+                    <td contenteditable="true"></td>
+                    <td contenteditable="true">Müəllim</td>
+                    <td contenteditable="true">Odlar Yurdu Universiteti, "Riyaziyyat və regional texnologiyalar" kafedrası</td>
+                    <td contenteditable="true">Odlar Yurdu Universiteti, "Riyaziyyat və regional texnologiyalar" kafedrası</td>
+                    <td contenteditable="true">20</td>
+                    <td contenteditable="true">10</td>
+                    <td contenteditable="true">Müəllim</td>
+                    <td contenteditable="true">Müəllim</td>
+                    <td><button class="deleteBtn" onclick="deleteRow(this)">Sil</button></td>
+                </tr>
+                <tr>
+                    <td contenteditable="true">Ənvər</td>
+                    <td contenteditable="true">Müzəffəri</td>
+                    <td contenteditable="true">Eldar</td>
+                    <td contenteditable="true">25.02.1997</td>
+                    <td contenteditable="true">Bakalavriat Odlar Yurdu Universiteti / magistratura Azərbaycan Texniki...</td>
+                    <td contenteditable="true">2023</td>
+                    <td contenteditable="true">magistratura</td>
+                    <td contenteditable="true"></td>
+                    <td contenteditable="true"></td>
+                    <td contenteditable="true">Müəllim</td>
+                    <td contenteditable="true">Odlar Yurdu Universiteti, "Riyaziyyat və regional texnologiyalar" kafedrası</td>
+                    <td contenteditable="true">Odlar Yurdu Universiteti, "Riyaziyyat və regional texnologiyalar" kafedrası</td>
+                    <td contenteditable="true">10</td>
+                    <td contenteditable="true">-</td>
+                    <td contenteditable="true">Müəllim</td>
+                    <td contenteditable="true">Müəllim</td>
+                    <td><button class="deleteBtn" onclick="deleteRow(this)">Sil</button></td>
+                </tr>
+                <tr>
+                    <td contenteditable="true">Mehriban</td>
+                    <td contenteditable="true">Nərimanova</td>
+                    <td contenteditable="true">Eldar</td>
+                    <td contenteditable="true">19.02.1978</td>
+                    <td contenteditable="true">Bakalavriat Bakı Dövlət Universiteti</td>
+                    <td contenteditable="true">2022</td>
+                    <td contenteditable="true">magistratura</td>
+                    <td contenteditable="true">f.e.n.</td>
+                    <td contenteditable="true"></td>
+                    <td contenteditable="true">Müəllim</td>
+                    <td contenteditable="true">Odlar Yurdu Universiteti, "Riyaziyyat və regional texnologiyalar" kafedrası</td>
+                    <td contenteditable="true">Odlar Yurdu Universiteti, "Riyaziyyat və regional texnologiyalar" kafedrası</td>
+                    <td contenteditable="true">25</td>
+                    <td contenteditable="true">25</td>
+                    <td contenteditable="true">Müəllim</td>
+                    <td contenteditable="true">Müəllim</td>
+                    <td><button class="deleteBtn" onclick="deleteRow(this)">Sil</button></td>
+                </tr>
+                <tr>
+                    <td contenteditable="true">Ulvi</td>
+                    <td contenteditable="true">Rəhimzadə</td>
+                    <td contenteditable="true">Rafiq</td>
+                    <td contenteditable="true">24.08.2000</td>
+                    <td contenteditable="true">Bakalavriat Odlar Yurdu Universiteti / magistratura Millı Aviasiya...</td>
+                    <td contenteditable="true">2023</td>
+                    <td contenteditable="true">magistratura</td>
+                    <td contenteditable="true">Doktorant</td>
+                    <td contenteditable="true"></td>
+                    <td contenteditable="true">Müəllim</td>
+                    <td contenteditable="true">Odlar Yurdu Universiteti, "Riyaziyyat və regional texnologiyalar" kafedrası</td>
+                    <td contenteditable="true">Odlar Yurdu Universiteti, "Riyaziyyat və regional texnologiyalar" kafedrası</td>
+                    <td contenteditable="true">2</td>
+                    <td contenteditable="true">2</td>
+                    <td contenteditable="true">Müəllim</td>
+                    <td contenteditable="true">Müəllim</td>
+                    <td><button class="deleteBtn" onclick="deleteRow(this)">Sil</button></td>
+                </tr>
+
+                <tr>
+                    <td contenteditable="true">Mədəhə</td>
+                    <td contenteditable="true">Kəliyev</td>
+                    <td contenteditable="true">Xəzər</td>
+                    <td contenteditable="true">26.12.1995</td>
+                    <td contenteditable="true">Bakalavriat Gəncə Dövlət Universiteti / magistratura Odlar Yurdu Universiteti</td>
+                    <td contenteditable="true">2025</td>
+                    <td contenteditable="true">magistratura</td>
+                    <td contenteditable="true">Doktorant</td>
+                    <td contenteditable="true"></td>
+                    <td contenteditable="true">Müəllim</td>
+                    <td contenteditable="true">Odlar Yurdu Universiteti, "Riyaziyyat və regional texnologiyalar" kafedrası</td>
+                    <td contenteditable="true">Odlar Yurdu Universiteti, "Riyaziyyat və regional texnologiyalar" kafedrası</td>
+                    <td contenteditable="true">10</td>
+                    <td contenteditable="true"></td>
+                    <td contenteditable="true">Müəllim</td>
+                    <td contenteditable="true">Müəllim</td>
+                    <td><button class="deleteBtn" onclick="deleteRow(this)">Sil</button></td>
+                </tr>
+                <tr>
+                    <td contenteditable="true">Güllü</td>
+                    <td contenteditable="true">Rəhimova</td>
+                    <td contenteditable="true">Yaşar</td>
+                    <td contenteditable="true">30.01.1999</td>
+                    <td contenteditable="true">Bakalavriat Gəncə Dövlət Universiteti / magistratura Gəncə Dövlət Universiteti</td>
+                    <td contenteditable="true">2022</td>
+                    <td contenteditable="true">magistratura</td>
+                    <td contenteditable="true"></td>
+                    <td contenteditable="true"></td>
+                    <td contenteditable="true">Müəllim</td>
+                    <td contenteditable="true">Odlar Yurdu Universiteti, "Riyaziyyat və regional texnologiyalar" kafedrası</td>
+                    <td contenteditable="true">Odlar Yurdu Universiteti, "Riyaziyyat və regional texnologiyalar" kafedrası</td>
+                    <td contenteditable="true"></td>
+                    <td contenteditable="true"></td>
+                    <td contenteditable="true">Müəllim</td>
+                    <td contenteditable="true">Müəllim</td>
+                    <td><button class="deleteBtn" onclick="deleteRow(this)">Sil</button></td>
+                </tr>
+                <tr>
+                    <td contenteditable="true">Fuad</td>
+                    <td contenteditable="true">Qasımov</td>
+                    <td contenteditable="true">Binnət</td>
+                    <td contenteditable="true">16.11.1962</td>
+                    <td contenteditable="true">Bakalavriat Moskva Dövlət Universiteti</td>
+                    <td contenteditable="true">1986</td>
+                    <td contenteditable="true">Bakalavriat (5 illik)</td>
+                    <td contenteditable="true"></td>
+                    <td contenteditable="true"></td>
+                    <td contenteditable="true">Müəllim</td>
+                    <td contenteditable="true">Odlar Yurdu Universiteti, "Riyaziyyat və regional texnologiyalar" kafedrası</td>
+                    <td contenteditable="true">Odlar Yurdu Universiteti, "Riyaziyyat və regional texnologiyalar" kafedrası</td>
+                    <td contenteditable="true">40</td>
+                    <td contenteditable="true">40</td>
+                    <td contenteditable="true">Müəllim</td>
+                    <td contenteditable="true">Müəllim</td>
+                    <td><button class="deleteBtn" onclick="deleteRow(this)">Sil</button></td>
+                </tr>
+                <tr>
+                    <td contenteditable="true">Fərid</td>
+                    <td contenteditable="true">Nəsirov</td>
+                    <td contenteditable="true">Tərləbəy</td>
+                    <td contenteditable="true">09.09.1996</td>
+                    <td contenteditable="true">Bakalavriat Milli Aviasiya Akademiyası / magistratura Pedaqoji Universitet</td>
+                    <td contenteditable="true">2021</td>
+                    <td contenteditable="true">magistratura</td>
+                    <td contenteditable="true"></td>
+                    <td contenteditable="true"></td>
+                    <td contenteditable="true">Müəllim</td>
+                    <td contenteditable="true">Odlar Yurdu Universiteti, "Riyaziyyat və regional texnologiyalar" kafedrası</td>
+                    <td contenteditable="true">Odlar Yurdu Universiteti, "Riyaziyyat və regional texnologiyalar" kafedrası</td>
+                    <td contenteditable="true">6</td>
+                    <td contenteditable="true">4</td>
+                    <td contenteditable="true">Müəllim</td>
+                    <td contenteditable="true">Müəllim</td>
+                    <td><button class="deleteBtn" onclick="deleteRow(this)">Sil</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        function deleteRow(btn) {
+            // Düymənin olduğu sətri (tr) tapır
+            var row = btn.closest('tr');
+            // Həmin sətri cədvəldən silir
+            row.remove();
+        }
+
+        function addRow() {
+            // Cədvəlin gövdəsini (tbody) tapır
+            var tableBody = document.getElementById('tableData');
+            
+            // Yeni bir sətir (tr) yaradır
+            var newRow = tableBody.insertRow(); // Ən sona əlavə edir
+            
+            // 16 ədəd redaktə edilə bilən data xanası (td) yaradır
+            for (var i = 0; i < 16; i++) {
+                var cell = newRow.insertCell(i);
+                cell.setAttribute('contenteditable', 'true');
+                cell.innerHTML = '...'; // Boş xana olduğunu göstərmək üçün
+            }
+            
+            // 17-ci xananı (Sil düyməsi üçün) yaradır
+            var deleteCell = newRow.insertCell(16);
+            deleteCell.innerHTML = '<button class="deleteBtn" onclick="deleteRow(this)">Sil</button>';
+        }
+    </script>
+
+</body>
+</html>
